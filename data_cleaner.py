@@ -91,6 +91,16 @@ combined_sal = pd.concat([year_sal, month_sal, day_sal, hour_sal], axis=0)
 
 df = pd.concat([df, combined_sal], axis=0)
 
+def province(i):
+    try:
+        split = i.split(",")
+        prov = split[1]
+        return prov
+    except:
+        return 'NaN'
+
+df['job_province'] = df['Location'].apply(province)
+
 df["Description"] = df["Description"].apply(lambda x: x.replace("\n"," "))
 
 #parsing of job description (python, etc.)
